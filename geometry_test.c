@@ -15,6 +15,7 @@
 
 #include "geometry.h"
 
+
 /* coord_2d_eq Test */
 START_TEST(test_2d_eq)
 {
@@ -50,6 +51,8 @@ START_TEST(test_2d_eq)
     b.x = 7.77;
     b.y = 8.88;
     ck_assert(!coord_2d_eq(&a, &b));
+
+
 
 }
 END_TEST
@@ -145,6 +148,36 @@ START_TEST(test_2d_midpoint)
 }
 END_TEST
 
+
+START_TEST(coord_2d_area_triangle){
+
+    coord_2d_t a;
+    coord_2d_t b;
+    coord_2d_t c;
+
+    a.x = 0;
+    a.y = 0;
+    b.x = 1;
+    b.y = 1;
+    c.x = 1;
+    c.y = 0;
+    double area = coord_2d_area_triangle(&a, &b, &c);
+    ck_assert(area == 0.5);
+
+    
+
+    a.x = 0;
+    a.y = 0;
+    b.x = 0;
+    b.y = 0;
+    c.x = 0;
+    c.y = 0;
+    area = coord_2d_area_triangle(&a, &b, &c);
+    ck_assert(area == 0);
+
+}
+END_TEST
+
 /* coord_2d Test Suite */
 Suite* coord_2d_suite(void)
 {
@@ -171,6 +204,7 @@ Suite* coord_2d_suite(void)
     return s;
 
 }
+
 
 /* main: run test suites and set exit status */
 int main(void){
